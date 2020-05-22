@@ -17,6 +17,9 @@ Source0:    http://ftpmirror.gnu.org/autoconf/autoconf-%{version}.tar.gz
 URL:        http://www.gnu.org/software/autoconf/
 BuildArch: noarch
 
+%if 0%{?rhel} > 7
+BuildRequires:      environment-modules
+%endif
 
 %if ! 0%{?buildroot:1}
 # HACK!  This should be truth only for RHEL5, so benefit from
@@ -112,6 +115,11 @@ mkdir -p %{buildroot}/share
 
 # Don't %%exclude this in %%files as it is not generated on RHEL7
 rm -rf %{buildroot}%{_infodir}/dir
+
+%if 0%{?rhel} >= 8
+mkdir -p %{buildroot}%{_datadir}/emacs/
+cp -R /usr/share/emacs/site-lisp %{buildroot}%{_datadir}/emacs/
+%endif
 
 %post
 /sbin/install-info %{_infodir}/autoconf.info %{_infodir}/dir || :
