@@ -5,7 +5,7 @@
 %{?scl:%scl_package autoconf}
 
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4590 for more details
-%define release_prefix 4
+%define release_prefix 5
 
 Summary:    A GNU tool for automatically configuring source code
 Name:       %{?scl_prefix}autoconf
@@ -134,6 +134,9 @@ fi
 %doc AUTHORS COPYING* ChangeLog NEWS README THANKS TODO
 
 %changelog
+* Fri May 22 2020 Julian Brown <julian.brown@cpanel.net> - 2.69-5
+- ZC-6865: Fix for C8
+
 * Wed Aug 12 2015 Pavel Raiskup <praiskup@redhat.com> - 2.69-4
 - use _compat_el5_build only if defined (rhbz#1252751)
 
